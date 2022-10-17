@@ -6,18 +6,20 @@
 	<script src="jquery.min.js"></script>
 	<style>
 		.box {
-			width: 70px;
-			height: 70px;
-			background-color: teal;
+			width: 225px;
+			height: 173px;
+			background-image: url(https://bananaboxes.com/wp-content/uploads/2022/07/Box-w-logo.png);
+			background-size: cover;
 			font-size: 300%;
 			text-align: center;
 			display: block;
 			position: absolute;
-			top: 100px;
+			top: 250px;
 			left: 0px;  /* <--- Change me! */
 		}
 		.board{
 			height: 100vh;
+			background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToK7gVYL_0dQfWhU-VFq20q3gItejkfpYekw&usqp=CAU);
 		}
 	</style>
 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
@@ -72,10 +74,10 @@
 			function update() {
 				positionX = positionX + speed;
 				moveBoxTo(positionX);
-				if (positionX >= boardWidth){
+				if (positionX >= boardWidth) {
 					speed = -speed;
 				}
-				if (positionX <= 0){
+				if (positionX < 0) {
 					speed = -speed;
 				}
 			};
@@ -88,7 +90,12 @@
 			function handleBoxClick() {
 				positionX = 0;
 				points = points + 1;
-				speed = speed + 3;
+				if (speed > 0) {
+					speed = speed + 3;
+				}
+				else {
+					speed = speed - 3;
+				}
 				changeBoxText(points);
 			};
 		})();
